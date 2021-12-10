@@ -1495,7 +1495,7 @@ function runSMILAnimation(parent, svgElement, elementsToAnimate) {
 
 	let animSvgElement = animateSVG(svgElement, elementsToAnimate);
 	if(svgElement.parentNode == parent) {
-		parent.removeChild(svgElement);
+		svgElement.remove();
 		parent.appendChild(animSvgElement);
 
 	}
@@ -1503,7 +1503,7 @@ function runSMILAnimation(parent, svgElement, elementsToAnimate) {
 	// Replace the new svgElement (data has already been replaced)
 	setTimeout(() => {
 		if(animSvgElement.parentNode == parent) {
-			parent.removeChild(animSvgElement);
+			animSvgElement.remove();
 			parent.appendChild(svgElement);
 		}
 	}, REPLACE_ALL_NEW_DUR);
@@ -1521,7 +1521,7 @@ function downloadFile(filename, data) {
 	document.body.appendChild(a);
 	a.click();
 	setTimeout(function(){
-		document.body.removeChild(a);
+		a.remove();
 		window.URL.revokeObjectURL(url);
 	}, 300);
 }
@@ -1709,7 +1709,7 @@ class BaseChart {
 
 	makeChartArea() {
 		if(this.svg) {
-			this.container.removeChild(this.svg);
+			this.svg.remove();
 		}
 		let m = this.measures;
 
@@ -1778,7 +1778,7 @@ class BaseChart {
 	render(components=this.components, animate=true) {
 		if(this.config.isNavigable) {
 			// Remove all existing overlays
-			this.overlays.map(o => o.parentNode.removeChild(o));
+			this.overlays.map(o => o.remove());
 			// ref.parentNode.insertBefore(element, ref);
 		}
 		let elementsToAnimate = [];
@@ -3792,7 +3792,7 @@ class AxisChart extends BaseChart {
 		if(this.overlayGuides) {
 			this.overlayGuides.forEach(g => {
 				let o = g.overlay;
-				o.parentNode.removeChild(o);
+				o.remove();
 			});
 		}
 
@@ -3821,7 +3821,7 @@ class AxisChart extends BaseChart {
 		if(this.overlayGuides) {
 			this.overlayGuides.forEach(g => {
 				let o = g.overlay;
-				o.parentNode.removeChild(o);
+				o.remove();
 			});
 		}
 	}

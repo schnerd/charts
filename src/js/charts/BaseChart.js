@@ -175,7 +175,7 @@ export default class BaseChart {
 
 	makeChartArea() {
 		if(this.svg) {
-			this.container.removeChild(this.svg);
+			this.svg.remove();
 		}
 		let m = this.measures;
 
@@ -244,7 +244,7 @@ export default class BaseChart {
 	render(components=this.components, animate=true) {
 		if(this.config.isNavigable) {
 			// Remove all existing overlays
-			this.overlays.map(o => o.parentNode.removeChild(o));
+			this.overlays.map(o => o.remove());
 			// ref.parentNode.insertBefore(element, ref);
 		}
 		let elementsToAnimate = [];
